@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+  <div class="row">
+    <div class="column" style="margin-top: 25%">
+      <h4>Logger</h4>
+
+      <form action="/" method="post">
+        {% csrf_token %}
+       
+        <input type="submit" value="HEALTHY" name="OK">
+        <input type="submit" value="WARN" name="not-found">
+        <input type="submit" value="ERROR" name="internal-server-error">
+        <input type="submit" value="INFO" name="card-number">
+      </form>
+
+      <h5>Example output to logs:</h5>
+      <p>[2020-11-11 13:10:42] "HEALTHY" Status: 200 "Message from Logger:" OK</p>
+      <p>[2020-11-11 13:10:42] "WARNING" Status: 404 "Message from Logger:" Not Found</p>
+      <p>[2020-11-11 13:10:42] "ERROR" Status: 500 "Message from Logger:" Internal Server Error</p>
+      <p>(last eight digits of card numbers are random)</p>
+      <p>[2020-11-11 13:10:42] "INFO" Status: 200 Customer Credit Card number 4321-4321-1823-3663</p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
