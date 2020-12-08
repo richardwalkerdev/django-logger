@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'django_prometheus',
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -140,3 +143,14 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+
+
+# # Added for django-prometheus
+# from django.conf.urls import include, url
+# urlpatterns = []
+
+# urlpatterns.append(url('prometheus/', include('django_prometheus.urls')))
+# urlpatterns.append(url('', include('config.urls')))
+
+# ROOT_URLCONF = "graphite.urls_prometheus_wrapper"
